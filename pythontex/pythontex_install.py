@@ -165,7 +165,10 @@ if any(texmf_vars):
     while (path_choice not in ('1', '2', '3', '4', '5') or 
             (int(path_choice) <= 3 and not texmf_vars[int(path_choice)-1])):
         print(textwrap.dedent(message))
-        path_choice = input('Installation location (number):  ')
+        if len(sys.argv) == 1:
+            path_choice = input('Installation location (number):  ')
+        else:
+            path_choice = sys.argv[1]
         if path_choice == '':
             sys.exit()
     if path_choice == '1':
