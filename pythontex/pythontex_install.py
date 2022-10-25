@@ -167,8 +167,10 @@ if any(texmf_vars):
         print(textwrap.dedent(message))
         if len(sys.argv) == 1:
             path_choice = input('Installation location (number):  ')
+            create_dir_choice = ''
         else:
             path_choice = sys.argv[1]
+            create_dir_choice = 'y'
         if path_choice == '':
             sys.exit()
     if path_choice == '1':
@@ -227,12 +229,12 @@ for eachpath in [doc_path, package_path, scripts_path, source_path]:
             makedirs(eachpath)
             print('  * Created ' + eachpath)
         else:
-            choice = ''
-            while choice not in ('y', 'n'):
-                choice = input('Some directories do not exist.  Create them? [y/n]  ')
-                if choice == '':
+            # create_dir_choice = ''
+            while create_dir_choice not in ('y', 'n'):
+                create_dir_choice = input('Some directories do not exist.  Create them? [y/n]  ')
+                if create_dir_choice == '':
                     sys.exit()
-            if choice == 'y':
+            if create_dir_choice == 'y':
                 make_paths = True
                 try:
                     makedirs(eachpath)
